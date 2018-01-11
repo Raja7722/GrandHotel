@@ -17,7 +17,7 @@ namespace GrandHotel.Pages
 
         public override void Display()
         {
-            // Affichage de la liste des clients
+            // Affichage de la liste des factures
             _factures = GrandHotelApp.DataContext.GetFactures();
             ConsoleTable.From(_factures).Display("factures");
 

@@ -8,8 +8,11 @@ namespace GrandHotel
 {
     public interface IDataContext
     {
+        // Afficher la liste des clients
         IList<string> GetClients();
 
+        // Afficher la liste des factures
         IList<string> GetFactures();
+
     }
 }

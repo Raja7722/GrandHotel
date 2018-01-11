@@ -1,6 +1,8 @@
 ﻿using GrandHotel.Properties;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,17 +10,16 @@ using System.Threading.Tasks;
 
 namespace GrandHotel
 {
-    class Contexte : IDataContext
+    public class Contexte
     {
-        public IList<string> GetClients()
+        public List<Client> GetListeClients()
         {
-            var list = new List<string>();
+            var list = new List<Client>();
             var cmd = new SqlCommand();
-            cmd.CommandText = @"select Nom, Prenom
-                                from Client
-                                order by 1";
+            cmd.CommandText = @"select Id, Nom, Prenom, Civilite, CarteFidelite
+                                from Client";
 
-            using (var conn = new SqlConnection(Settings.Default.GrandHotel))
+            using (var conn = new SqlConnection(Settings.Default.GrandHotelConnect))
             {
                 cmd.Connection = conn;
                 conn.Open();
@@ -27,7 +28,14 @@ namespace GrandHotel
                 {
                     while (reader.Read())
                     {
-                        list.Add((string)reader["Client"]);
+                        var item = new Client();
+                        item.IdClient = (int)reader["Id"];
+                        item.Nom = (string)reader["Nom"];
+                        item.Prenom = (string)reader["Prenom"];
+                        item.Civilite = (string)reader["Civilite"];
+                        item.CarteFidelite = (Boolean)reader["CarteFidelite"];
+                        //item.Societe = (string)reader["Societe"];
+                        list.Add(item);
                     }
                 }
             }
@@ -43,7 +51,7 @@ namespace GrandHotel
                                 from Client
                                 order by 1";
 
-            using (var conn = new SqlConnection(Settings.Default.GrandHotel))
+            using (var conn = new SqlConnection(Settings.Default.GrandHotelConnect))
             {
                 cmd.Connection = conn;
                 conn.Open();

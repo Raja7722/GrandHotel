@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace GrandHotel
 {
-    class GrandHotelApp : ConsoleApplication
+    public class GrandHotelApp : ConsoleApplication
     {
         private static GrandHotelApp _instance;
-        private static IDataContext _dataContext;
+        private static Contexte _dataContext;
         /// <summary>
         /// Obtient l'instance unique de l'application
         /// </summary>
@@ -26,12 +26,7 @@ namespace GrandHotel
             }
         }
 
-        internal void AddPage(PageGestionFactures pageGestionFactures)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static IDataContext DataContext // Singleton
+        public static Contexte DataContext // Singleton
         {
             get
             {

@@ -17,14 +17,7 @@ namespace GrandHotel.Pages
 
         public override void Display()
         {
-            // Affichage de la liste des clients
-            //_factures = GrandHotelApp.DataContext.GetFactures();
-            //ConsoleTable.From(_factures).Display("factures");
 
-            // Affichage de la liste des commandes du client sélectionné
-            //string id = Input.Read<string>("De quel client souhaitez-vous afficher la liste des commandes ? ");
-            //var commandes = _clients.Where(c => c.CustomerId == id).Select(c => c.Orders).FirstOrDefault();
-            //ConsoleTable.From(commandes).Display("commandes");
         }
     }
 }

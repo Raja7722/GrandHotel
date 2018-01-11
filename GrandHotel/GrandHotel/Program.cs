@@ -13,7 +13,7 @@ namespace GrandHotel
         static void Main(string[] args)
         {
             GrandHotelApp app = GrandHotelApp.Instance;
-            app.Title = "GrandHotel";
+            //app.Title = "GrandHotel";
 
             // Ajout des pages
             Page accueil = new PageAccueil();

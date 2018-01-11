@@ -7,7 +7,7 @@
     <ProjectGuid>{32D88A11-0807-4877-BBC7-2CFC93FD67D1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>GrandHotel</RootNamespace>
-    <AssemblyName>²²²²²²</AssemblyName>
+    <AssemblyName>GrandHotel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -60,7 +60,6 @@
     <Compile Include="Contexte.cs" />
     <Compile Include="Entites.cs" />
     <Compile Include="GrandHotelApp.cs" />
-    <Compile Include="IDataContext.cs" />
     <Compile Include="Pages\PageAccueil.cs" />
     <Compile Include="Pages\PageGestionClients.cs" />
     <Compile Include="Pages\PageGestionFactures.cs" />
@@ -74,9 +73,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>

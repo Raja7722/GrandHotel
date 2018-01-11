@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrandHotel
 {
-    public class Client
+    public class Client //v
     {
         public int IdClient { get; set; } // P
         public string Civilite { get; set; }

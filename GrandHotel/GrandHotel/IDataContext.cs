@@ -8,5 +8,6 @@ namespace GrandHotel
 {
     class IDataContext
     {
+
     }
 }

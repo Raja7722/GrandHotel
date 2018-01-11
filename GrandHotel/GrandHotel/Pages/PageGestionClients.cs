@@ -8,6 +8,6 @@ namespace GrandHotel.Pages
 {
     class PageGestionClients
     {
-        gxf
+        
     }
 }

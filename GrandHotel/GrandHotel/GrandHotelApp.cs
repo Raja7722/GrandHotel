@@ -1,4 +1,5 @@
-﻿using Outils.TConsole;
+﻿using GrandHotel.Pages;
+using Outils.TConsole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GrandHotel
 {
-    class GrandHotelApp
+    class GrandHotelApp : ConsoleApplication
     {
         private static GrandHotelApp _instance;
         private static IDataContext _dataContext;
@@ -23,6 +24,11 @@ namespace GrandHotel
 
                 return _instance;
             }
+        }
+
+        internal void AddPage(PageGestionFactures pageGestionFactures)
+        {
+            throw new NotImplementedException();
         }
 
         public static IDataContext DataContext // Singleton

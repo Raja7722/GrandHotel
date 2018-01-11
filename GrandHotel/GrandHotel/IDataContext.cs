@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace GrandHotel
 {
-    class IDataContext
+    public interface IDataContext
     {
+        IList<string> GetClients();
 
+        IList<string> GetFactures();
     }
 }

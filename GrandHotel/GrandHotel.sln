@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandHotel", "GrandHotel\GrandHotel.csproj", "{32D88A11-0807-4877-BBC7-2CFC93FD67D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TConsole", "..\..\Outils\Console\TConsole.csproj", "{222ADAFA-6E7D-404C-A04D-DB30BDF702A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TConsole", "Console\TConsole.csproj", "{222ADAFA-6E7D-404C-A04D-DB30BDF702A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

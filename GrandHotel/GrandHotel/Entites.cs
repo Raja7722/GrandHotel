@@ -20,7 +20,7 @@ namespace GrandHotel
 
         public class Telephone
         {
-            public string Numero; // P
+            public string Numero1; // P
             public int IdClient; // F
             public string CodeType;
             public Boolean Pro;

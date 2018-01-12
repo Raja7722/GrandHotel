@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Orders>
+	<order OrderId="10248" AddressId="EDBF13D3-D068-4A24-8DD4-09E0B868C2B4"
+		CustomerId="VINET" OrderDate="2015-07-04" Freight="32.38">
+		<orderdetails>
+			<orderdetail ProductId="11" UnitPrice="14.00" Quantity="12" Discount="0"/>
+			<orderdetail ProductId="42" UnitPrice="9.80" Quantity="10" Discount="0"/>
+			<orderdetail ProductId="72" UnitPrice="34.80" Quantity="5" Discount="0"/>
+		</orderdetails>
+	</order>
+	<order OrderId="" AddressId="" CustomerId="" OrderDate="" Freight="">
+		<orderdetails>
+			<orderdetail ProductId="" UnitPrice="" Quantity="" Discount=""/>
+			<orderdetail ProductId="" UnitPrice="" Quantity="" Discount=""/>
+			<orderdetail ProductId="" UnitPrice="" Quantity="" Discount=""/>
+			<orderdetail ProductId="" UnitPrice="" Quantity="" Discount=""/>
+		</orderdetails>
+	</order>
+</Orders>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DateCommandes>
+	<DateCommande annee="2015" mois="8">
+		<Commande Id="10273" Montant="2037,28" />
+		<Commande Id="10285" Montant="1743,36" />
+		<Commande Id="10286" Montant="3016,00" />
+	</DateCommande>
+	<DateCommande annee="2015" mois="9">
+		<Commande Id="10313" Montant="182,40" />
+	</DateCommande>
+	<DateCommande annee="2015" mois="11">
+		<Commande Id="10345" Montant="2924,80" />
+		<Commande Id="10361" Montant="2046,24" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="1">
+		<Commande Id="10418" Montant="1814,80" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="2">
+		<Commande Id="10451" Montant="3849,66" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="4">
+		<Commande Id="10515" Montant="9921,30" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="5">
+		<Commande Id="10527" Montant="1503,00" />
+		<Commande Id="10540" Montant="10191,70" />
+		<Commande Id="10549" Montant="3554,27" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="7">
+		<Commande Id="10588" Montant="3120,00" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="9">
+		<Commande Id="10658" Montant="4464,60" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="10">
+		<Commande Id="10691" Montant="10164,80" />
+		<Commande Id="10694" Montant="4825,00" />
+		<Commande Id="10721" Montant="923,87" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="11">
+		<Commande Id="10745" Montant="4529,80" />
+	</DateCommande>
+	<DateCommande annee="2016" mois="12">
+		<Commande Id="10765" Montant="1515,60" />
+		<Commande Id="10788" Montant="731,50" />
+	</DateCommande>
+	<DateCommande annee="2017" mois="1">
+		<Commande Id="10845" Montant="3812,70" />
+	</DateCommande>
+	<DateCommande annee="2017" mois="2">
+		<Commande Id="10865" Montant="16387,50" />
+		<Commande Id="10878" Montant="1539,00" />
+	</DateCommande>
+	<DateCommande annee="2017" mois="3">
+		<Commande Id="10938" Montant="2731,88" />
+		<Commande Id="10962" Montant="3584,00" />
+	</DateCommande>
+	<DateCommande annee="2017" mois="4">
+		<Commande Id="10991" Montant="2296,00" />
+		<Commande Id="10996" Montant="560,00" />
+		<Commande Id="11021" Montant="6306,24" />
+	</DateCommande>
+</DateCommandes>

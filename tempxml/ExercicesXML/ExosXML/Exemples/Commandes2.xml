@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Orders>
+	<order>
+		<Orderid>10248</Orderid>
+		<AddressId>EDBF13D3-D068-4A24-8DD4-09E0B868C2B4</AddressId>
+		<CustomerId>VINET</CustomerId>
+		<OrderDate>2015-07-04</OrderDate>
+		<Freight>32.38</Freight>
+		<orderdetails>
+			<orderdetail ProductId="11" UnitPrice="14.00" Quantity="12" Discount="0"/>
+			<orderdetail ProductId="42" UnitPrice="9.80" Quantity="10" Discount="0"/>
+			<orderdetail ProductId="72" UnitPrice="34.80" Quantity="5" Discount="0"/>
+		</orderdetails>
+	</order>
+	<order>
+		<Orderid>10249</Orderid>
+		<AddressId>EDBF13D3-D068-4A24-8DD4-09E0B868C2B4</AddressId>
+		<CustomerId>TOMSP</CustomerId>
+		<OrderDate>2015-07-05</OrderDate>
+		<Freight>11.61</Freight>
+		<orderdetails>
+			<orderdetail ProductId="11" UnitPrice="14.00" Quantity="12" Discount="0"/>
+			<orderdetail ProductId="42" UnitPrice="9.80" Quantity="10" Discount="0"/>
+			<orderdetail ProductId="72" UnitPrice="34.80" Quantity="5" Discount="0"/>
+		</orderdetails>
+	</order>
+</Orders>

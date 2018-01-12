@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CollectionsBD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CollectionBD Nom="Les aventures de Tintin">
+    <Auteurs>
+      <Auteur>Hergé</Auteur>
+    </Auteurs>
+    <Genres>
+      <Genre>Aventure</Genre>
+      <Genre>Policier</Genre>
+      <Genre>Science-fiction</Genre>
+    </Genres>
+    <Albums>
+      <Album Id="1" Titre="Tintin au pays des Soviets" Année="1930" />
+      <Album Id="2" Titre="Tintin au Congo" Année="1931" />
+      <Album Id="3" Titre="Tintin en Amérique" Année="1932" />
+      <Album Id="4" Titre="Les Cigares du pharaon" Année="1934" />
+      <Album Id="5" Titre="Le Lotus bleu" Année="1937" />
+      <Album Id="6" Titre="L'Oreille cassée" Année="1937" />
+      <Album Id="7" Titre="L'Ile Noire" Année="1938" />
+      <Album Id="8" Titre="Le Sceptre d'Ottokar" Année="1939" />
+      <Album Id="9" Titre="Le Crabe aux pinces d'or" Année="1941" />
+      <Album Id="10" Titre="L'Étoile mystérieuse" Année="1942" />
+      <Album Id="11" Titre="Le Secret de La Licorne" Année="1943" />
+      <Album Id="12" Titre="Le Trésor de Rackham le Rouge" Année="1944" />
+      <Album Id="13" Titre="Les Sept Boules de cristal" Année="1948" />
+      <Album Id="14" Titre="Le Temple du Soleil" Année="1949" />
+      <Album Id="15" Titre="Tintin au pays de l'or noir" Année="1950" />
+      <Album Id="16" Titre="Objectif Lune" Année="1953" />
+      <Album Id="17" Titre="On a marché sur la Lune" Année="1954" />
+      <Album Id="18" Titre="L'Affaire Tournesol" Année="1956" />
+      <Album Id="19" Titre="Coke en stock" Année="1958" />
+      <Album Id="20" Titre="Tintin au Tibet" Année="1960" />
+      <Album Id="21" Titre="Les Bijoux de la Castafiore" Année="1963" />
+      <Album Id="22" Titre="Vol 714 pour Sydney" Année="1968" />
+      <Album Id="23" Titre="Tintin et les Picaros" Année="1976" />
+      <Album Id="24" Titre="Tintin et l'Alph-Art" Année="1986" />
+    </Albums>
+  </CollectionBD>
+  <CollectionBD Nom="Astérix">
+    <Auteurs>
+      <Auteur>René Goscinny</Auteur>
+      <Auteur>Albert Uderzo</Auteur>
+      <Auteur>Jean-Yves Ferri</Auteur>
+      <Auteur>Didier Conrad</Auteur>
+    </Auteurs>
+    <Genres>
+      <Genre>Aventure</Genre>
+      <Genre>Humour</Genre>
+    </Genres>
+    <Albums>
+      <Album Id="1" Titre="Astérix le Gaulois" Année="1961" />
+      <Album Id="2" Titre="La Serpe d'or" Année="1962" />
+      <Album Id="3" Titre="Astérix et les Goths" Année="1963" />
+      <Album Id="4" Titre="Astérix Gladiateur" Année="1964" />
+      <Album Id="5" Titre="Le Tour de Gaule d'Astérix" Année="1965" />
+      <Album Id="6" Titre="Astérix et Cléopâtre" Année="1965" />
+      <Album Id="7" Titre="Le Combat des chefs" Année="1966" />
+      <Album Id="8" Titre="Astérix chez les Bretons" Année="1966" />
+      <Album Id="9" Titre="Astérix et les Normands" Année="1967" />
+      <Album Id="10" Titre="Astérix légionnaire" Année="1967" />
+      <Album Id="11" Titre="Le Bouclier arverne" Année="1968" />
+      <Album Id="12" Titre="Astérix aux jeux Olympiques" Année="1968" />
+      <Album Id="13" Titre="Astérix et le chaudron" Année="1969" />
+      <Album Id="14" Titre="Astérix en Hispanie" Année="1969" />
+      <Album Id="15" Titre="La zizanie" Année="1970" />
+      <Album Id="16" Titre="Astérix chez les Helvètes" Année="1970" />
+      <Album Id="17" Titre="Le Domaine des dieux" Année="1971" />
+      <Album Id="18" Titre="Les Lauriers de César" Année="1972" />
+      <Album Id="19" Titre="Le Devin" Année="1972" />
+      <Album Id="20" Titre="Astérix en Corse" Année="1973" />
+      <Album Id="21" Titre="Le Cadeau de César" Année="1974" />
+      <Album Id="22" Titre="La Grande Traversée" Année="1975" />
+      <Album Id="23" Titre="Obélix et Compagnie" Année="1976" />
+      <Album Id="24" Titre="Astérix chez les Belges" Année="1979" />
+      <Album Id="25" Titre="Le Grand Fossé" Année="1980" />
+      <Album Id="26" Titre="L'Odyssée d'Astérix" Année="1981" />
+      <Album Id="27" Titre="Le Fils d'Astérix" Année="1983" />
+      <Album Id="28" Titre="Astérix chez Rahazade" Année="1987" />
+      <Album Id="29" Titre="La Rose et le glaive" Année="1991" />
+      <Album Id="30" Titre="La Galère d'Obélix" Année="1996" />
+      <Album Id="31" Titre="Astérix et Latraviata" Année="2001" />
+      <Album Id="32" Titre="Astérix et la rentrée gauloise" Année="2003" />
+      <Album Id="33" Titre="Le Ciel lui tombe sur la tête" Année="2005" />
+      <Album Id="34" Titre="L'Anniversaire d'Astérix et Obélix" Année="2009" />
+      <Album Id="35" Titre="Astérix chez les Pictes" Année="2013" />
+      <Album Id="36" Titre="Le Papyrus de César" Année="2015" />
+    </Albums>
+  </CollectionBD>
+  <CollectionBD Nom="Lucky Luke">
+    <Auteurs>
+      <Auteur>Morris</Auteur>
+      <Auteur>Achdé</Auteur>
+    </Auteurs>
+    <Genres>
+      <Genre>Western</Genre>
+      <Genre>Humour</Genre>
+    </Genres>
+    <Albums>
+      <Album Id="1" Titre="La Mine d'or de Dick Digger" Année="1949" />
+      <Album Id="2" Titre="Rodéo" Année="1951" />
+      <Album Id="3" Titre="Arizona" Année="1951" />
+      <Album Id="4" Titre="Sous le ciel de l'Ouest" Année="1952" />
+      <Album Id="5" Titre="Lucky Luke contre Pat Poker" Année="1953" />
+      <Album Id="6" Titre="Hors-la-loi" Année="1954" />
+      <Album Id="7" Titre="L'Élixir du Docteur Doxey" Année="1955" />
+      <Album Id="8" Titre="Phil Defer" Année="1956" />
+      <Album Id="9" Titre="Des Rails sur la prairie" Année="1957" />
+      <Album Id="10" Titre="Alerte aux Pieds-Bleus" Année="1958" />
+      <Album Id="11" Titre="Lucky Luke contre Joss Jamon" Année="1958" />
+      <Album Id="12" Titre="Les Cousins Dalton" Année="1958" />
+      <Album Id="13" Titre="Le Juge" Année="1959" />
+      <Album Id="14" Titre="Ruée sur l'Oklahoma" Année="1960" />
+      <Album Id="15" Titre="L'Évasion des Dalton" Année="1960" />
+      <Album Id="16" Titre="En remontant le Mississippi" Année="1961" />
+      <Album Id="17" Titre="Sur la piste des Dalton" Année="1962" />
+      <Album Id="18" Titre="À l'ombre des derricks" Année="1962" />
+      <Album Id="19" Titre="Les Rivaux de Painful Gulch" Année="1962" />
+      <Album Id="20" Titre="Billy the Kid" Année="1962" />
+      <Album Id="21" Titre="Les Collines noires" Année="1963" />
+      <Album Id="22" Titre="Les Dalton dans le blizzard" Année="1963" />
+      <Album Id="23" Titre="Les Dalton courent toujours" Année="1964" />
+      <Album Id="24" Titre="La Caravane" Année="1964" />
+      <Album Id="25" Titre="La Ville fantôme" Année="1965" />
+      <Album Id="26" Titre="Les Dalton se rachètent" Année="1965" />
+      <Album Id="27" Titre="Le 20ème de cavalerie" Année="1965" />
+      <Album Id="28" Titre="L'Escorte" Année="1966" />
+      <Album Id="29" Titre="Des Barbelés sur la prairie" Année="1967" />
+      <Album Id="30" Titre="Calamity Jane" Année="1967" />
+      <Album Id="31" Titre="Tortillas pour les Dalton" Année="1967" />
+    </Albums>
+  </CollectionBD>
+</CollectionsBD>

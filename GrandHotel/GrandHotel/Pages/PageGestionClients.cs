@@ -24,8 +24,8 @@ namespace GrandHotel.Pages
             Menu.AddOption("2", "Afficher les coordonnées d'un client", AfficherCoordonneesClients);
             Menu.AddOption("3", "Saisir un nouveau client et son adresse", CreerClient);
             Menu.AddOption("4", "Ajouter un numéro de téléphone ou une adresse email à un client", AjouterTelephoneEmail);
-            //Menu.AddOption("5", "Supprimer un client et ses coordonnées", SupprimerClient);
-            //Menu.AddOption("6", "Exporter la liste des clients au format XML", ExporterListeClientsXML);
+            Menu.AddOption("5", "Supprimer un client et ses coordonnées", SuppClient);
+            Menu.AddOption("6", "Exporter la liste des clients au format XML", ExporterListeClientsXML);
         }
 
         // Afficher la liste des clients
@@ -128,7 +128,7 @@ namespace GrandHotel.Pages
                         break;
                 }
                 // Enregistrement dans la base
-                                
+
                 Output.WriteLine(ConsoleColor.Green, "Modifications validées");
             }
         }
@@ -139,24 +139,21 @@ namespace GrandHotel.Pages
             // Affiche la liste des clients avec leur id
             AfficherClients();
 
+            // Saisir l'id Id du client à supprimer
             int id = Input.Read<int>("Id du client à supprimer :");
-            try
-            {
-                GrandHotelApp.DataContext.SupprimerClient(id);
-            }
-            catch (SqlException e)
-            {
-                GérerErreurSql(e);
-            }
+
+            // Supprimer le client si il n'est pas associé à aucune facture ni occupation de chambre
+            GrandHotelApp.DataContext.SupprimerClient(id);
         }
 
-        private void GérerErreurSql(SqlException ex)
+        // Exporter fichier XML
+        private void ExporterListeClientsXML()
         {
-            if (ex.Number == 547)
-                Output.WriteLine(ConsoleColor.Red,
-                    "Le client ne peut pas être supprimé car il est associé à une facture ou une réservation");
-            else
-                throw ex;
+            // Serialization de la liste des clients
+            GrandHotelApp.DataContext.SerializationClient();
+            Output.WriteLine(ConsoleColor.Green, "La liste des clients a bien été exporté.");
+            Console.ReadLine();
+            //Console.WriteLine("En construction\n");
         }
     }
 }

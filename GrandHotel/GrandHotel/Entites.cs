@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrandHotel
 {
-    public class Client //v
+    public class Client
     {
         public int IdClient { get; set; } // P
         public string Civilite { get; set; }
@@ -16,12 +16,26 @@ namespace GrandHotel
         public string Societe { get; set; }
     }
 
+    public class ClientCoordonnees
+    {
+        public int IdClient { get; set; } // P
+        public string Civilite { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Rue { get; set; }
+        public string Complement { get; set; }
+        public string CodePostal { get; set; }
+        public string Ville { get; set; }
+        public string Numero { get; set; }
+        public string Adresse { get; set; } // P
+    }
+
     public class Telephone
     {
-        public string Numero { get; set; } // 13:36
+        public string Numero { get; set; } //
         public int IdClient { get; set; } // F
         public string CodeType { get; set; }
-        public Boolean Pro { get; set; }
+        public bool Pro { get; set; }
     }
 
     public class Reservation
@@ -38,7 +52,7 @@ namespace GrandHotel
     {
         public int IdClient { get; set; } // PF
         public string Rue { get; set; }
-        public string complement { get; set; }
+        public string Complement { get; set; }
         public string CodePostal { get; set; }
         public string Ville { get; set; }
     }

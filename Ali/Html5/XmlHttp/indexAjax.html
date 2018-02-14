@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="text" id="saisie" value="auto" />
+    <button id="btnGet">Get avec Ajax</button>
+    <button id="btnPost">Post avec Ajax</button>
+    <p id="message"></p>
+
+    <script>
+        $("#btnGet").click( // Find the balise with the id btnGet. If I said .btnGet it would mean find the balise in the class btnGet.
+            function () {
+                var param = $("#saisie")[0].value;
+                $.ajax( // ajax is a method of the object JQuery (the object JQuery is represented with the $ symbol)
+                    {
+                        type: "GET",
+                        url: "http://localhost:62604/page.aspx?categorie=" + param,
+                        success: function (data, status) {
+                            if (status == "success")
+                                document.getElementById("message").innerHTML = data;
+                        },
+                        error: function (xhr, status, error) {
+                            alert(status);
+                        }
+                    }
+                );
+            });
+        $("#btnPost").click(
+            function () {
+                var param = $("#saisie")[0].value;
+                $.ajax( // ajax is a method of the object JQuery (the object JQuery is represented with the $ symbol)
+                    {
+                        type: "POST",
+                        url: "http://localhost:62604/page.aspx",
+                        data: { cat: param },
+                        datatype: 'application/json', // It means we tell the server that we send him information of type JSon
+                        contentType: 'application/x-www-form-urlencoded', // I tell him the type of data I expect him to send me. DO NOT forget this line
+                        success: function (data, status) {
+                            if (status == "success")
+                                document.getElementById("message").innerHTML = data;
+                        },
+                        error: function (xhr, status, error) {
+                            alert(status);
+                        }
+                    }
+                );
+            }
+        )
+
+
+    </script>
+</body>
+</html>

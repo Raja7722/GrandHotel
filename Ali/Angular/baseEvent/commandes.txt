@@ -1,0 +1,36 @@
+# Installation and configuration if Typescript
+npm install -g typescript (-g means that this module is installed everywhere not only in the current project contrary to the previous ones)
+# produit un fichier tsconfig.json
+tsc --init --target es5 --sourceMap --experimentalDecorators --emitDecoratorMetadata (ES5 is the norm to which all the browsers are compatible)
+
+# Création d'un dossier module (produit un fichier package.jsons)
+npm init
+
+#Installation des modules de dépendences et enregistrements de l'install dans package.json (--save)
+npm install --save @angular/core @angular/compiler @angular/common @angular/platform-browser @angular/platform-browser-dynamic reflect -metadata zone.js rxjs (--save means that these modules are saved in my current project)
+npm install --save-dev @types/core-js
+
+#Compilation produisant un fichier js
+tsc --watch (This is the translator typescript to javascript. --watch means that evrytime I change my code typescript it will re-translate my code to javascript)
+
+# Création des fichiers ts
+app.component.ts
+app.module.ts
+main.ts
+
+npm install --save systemjs
+
+#Installe Globalement le server
+npm install http-server -g
+
+#Lancer le serveur Web
+http-server
+
+# Navigateur sur index.html
+
+################################ Instead of doing all the above we can just do the following ############################
+npm install -g @angular/cli
+ng new baseCli
+ng serve
+
+# Then go to localhost:4200

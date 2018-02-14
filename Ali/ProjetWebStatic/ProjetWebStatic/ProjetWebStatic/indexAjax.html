@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <h1>Outside</h1>
+    <p> Voyages <div id="div1"> </div></p>
+
+    <div id="div2">
+        <label for="Carte bancaire">Information de votre carte bancaire :</label>
+        <input id="NoCB" type="number"
+               placeholder="Numero de carte bancaire"
+               required="required" />
+    </div>
+
+    <p>Nombre de place disponible sur voyage 2<div id="div3"></div></p>
+    <p>Réservation<div id="div4"></div></p>
+
+    <script>
+        $.ajax(
+            {
+                type: "GET",
+                url: "http://localhost:2222/api/voyage/0/0/211",
+
+                datatype: 'application/json',
+                //data: {'Continent':0, 'Region':0, 'Pays':211},
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                success: function (data, status) {
+                    if (status == "success") {
+                        var content = '<ul>';
+
+                        for (i = 0; i < data.length; i++)
+                            content += '<li>' + data[i].Id + '. ' + data[i].Nom + '</li>';
+                        $('#div1').html(content);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div1').html("error");
+                }
+            });
+
+
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "http://localhost:2222/api/paiement",
+                data: "123456789",
+                datatype: 'application/text',
+                contentType: 'application/json',
+                success: function (data, status) {
+                    if (status == "success") {
+                        $('#div2').html(data.Check ? "<ul><li>CB Validé" : "CB non validé</li></ul>");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div2').html("error");
+                }
+            });
+
+
+
+        $.ajax(
+            {
+                type: "GET",
+                url: "http://localhost:2222/api/voyage/2",
+                datatype: 'application/text',
+                contentType: 'application/json',
+                success: function (data, status) {
+                    if (status == "success") {
+
+                        $('#div3').html("<ul><li>" + data.NbPlacesDispo + " place(s) disponible(s) pour " + data.Nom + "</li></ul>");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div3').html("error");
+                }
+            });
+        $.ajax(
+            {
+                type: "POST",
+                url: "http://localhost:2222/api/voyage/",
+                data: {
+                    'Etat': 0,
+                    'IdVoyage': 1,
+                    'InfosPaiements':
+                    {
+                        'Check': true,
+                        'Montant': 1500,
+                        'noCB': "123456"
+                    },
+                    Personnes:
+                    [
+                        {
+                            'Id': 1,
+                            'DateNaissance': '10/10/1910',
+                            'EstClient': true,
+                            'Nom': 'Makri',
+                            'Prenom': 'Ali'
+                        },
+                        {
+                            'Id': 2,
+                            'DateNaissance': '11/11/1911',
+                            'EstClient': false,
+                            'Nom': 'Omari',
+                            'Prenom': 'Youssef'
+                        }
+                    ]
+                },
+                datatype: 'application/json',
+                contentType: 'application/json',
+                success: function (data, status) {
+                    if (status == "success") {
+                        $('#div4').html(data.Etat == 0 ? "<ul><li>Réservation effectuée</li></ul>" : "<ul><li>Erreur sur réservation</li></ul>");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div4').html("error");
+                }
+            });
+    </script>
+</body>
+</html>

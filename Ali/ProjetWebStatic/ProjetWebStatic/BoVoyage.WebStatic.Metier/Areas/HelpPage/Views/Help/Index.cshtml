@@ -1,0 +1,66 @@
+@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using BoVoyage.WebStatic.Metier.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "ASP.NET Web API Help Page";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Tests</h2>
+            <p>
+                Voyages
+            </p>
+            <p>
+                <ul>
+                    <li><a href="http://localhost:2222/Api/voyage/0/0/0">Tous les voyages (GET)</a></li>
+                    <li><a href="http://localhost:2222/Api/voyage/1">Premier voyage (GET)</a></li>
+                </ul>
+            </p>
+            <p>
+                Paiement
+            </p>
+
+            <ul>
+                <li>
+                    <strong>
+                        <a href="http://localhost:2222/Help/Api/POST-api-Paiement">Vérification Validité CB</a>
+                    </strong> @Html.Raw("http://localhost:2222/Api/paiement");
+                </li>
+            </ul>
+            <p>
+                Réservation
+            </p>
+
+            <ul>
+                <li>
+                    <strong>
+                        <a href="http://localhost:2222/Help/Api/POST-api-Voyage">Effectuer une réservation</a>
+                    </strong> @Html.Raw("http://localhost:2222/Api/voyage");
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

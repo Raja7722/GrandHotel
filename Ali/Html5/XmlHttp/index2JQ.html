@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="text" id="saisie" value="auto" />
+    <button id="btnGet">Get avec JQuery</button>
+    <button id="btnPost">Post avec JQuery</button>
+    <p id="message"></p>
+
+    <script>
+        $("#btnGet").click( // Find the balise with the id btnGet. If I said .btnGet it would mean find the balise in the class btnGet.
+            function () {
+                var param = $("#saisie")[0].value;
+                $.get(
+                    "http://localhost:62604/page.aspx?categorie=" + param,
+                    function (data, status) {
+                        if (status == "success")
+                            document.getElementById("message").innerHTML = data;
+                    });
+            });
+        $("#btnPost").click(
+            function () {
+                var param = document.getElementById("saisie").value;
+                $.post(
+                    "http://localhost:62604/page.aspx",
+                    { cat: param },
+                    function (data, status) {
+                        if (status == "success")
+                            document.getElementById("message").innerHTML = data;
+                    });
+            }
+        )
+
+
+    </script>
+</body>
+</html>

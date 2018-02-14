@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+            opacity: 0.5;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        .cache {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img id="image1" src="images/flecheBas.jpg" class="cache"/>
+        <img id="image2" src="images/gagne.jpg" class="cache"/>
+        <img id="image3" src="images/flecheHaut.jpg" class="cache"/>
+    </div>
+    <script>
+        var imgCourante = "image1";
+        setInterval(boucle, 300);
+        function boucle() {
+            alterneImage(imgCourante);
+            switch (imgCourante) {
+                case 'image1': imgCourante = 'image2'; break;
+                case 'image2': imgCourante = 'image3'; break;
+                case 'image3': imgCourante = 'image1'; break;
+            }
+        }
+        function alterneImage(id) {
+            $('img').addClass('cache');
+            $('#' + id).removeClass('cache');
+            $('#' + id).addClass('visible');
+        }
+    </script>
+</body>
+</html>

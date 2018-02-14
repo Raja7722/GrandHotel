@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div style="left:50px;position:absolute;" id="div1">
+        <!--L'élément HTML <div> (qui signifie division du document) est un conteneur
+        générique qui permet d'organiser le contenu sans représenter rien de particulier.-->
+        Joke &nbsp; : <input type="checkbox" id="coche" checked="checked" /> <!--&nbsp; puts a space-->
+        <p id="p1">Texte 1</p>
+        <input type="text" id="input1" value="Texte 2" />
+        <div style="position:absolute;" id="div2">
+            <button id="b1" onclick="changeText(); changePos();"
+                    onmouseover="joke();">
+                Ok
+            </button>
+        </div>
+    </div>
+    <!--Whatever is between "" is javascript. I will have to define the function changeText.-->
+    <script>
+
+        function changeText() { // It will change the text to the given value when we click the button
+            var p = document.getElementById("p1"); //document is our <body>.
+            //getElementById returns the element defined by the id in this case p will be a paragraph < p > element.
+            var t = document.getElementById("input1");
+            if (p.innerHTML == t.value)
+                p.innerHTML = "Texte 1"; // It takes the content of the balise, in this case it is the text in the paragraph <p>
+            else
+                p.innerHTML = t.value;
+        }
+
+        function changePos() { // It xill move the button by 10px every time we click it
+            var div = document.getElementById("div1");
+            var val = div.style.left;
+            var newVal = (parseInt(val.split('px')[0]) + 10) + "px"; // "split" will split 50px by the word px which will give us 50 and put it in an array with one element
+            // We use ParseInt to convert the val.split('px')[0] to an integer otherwise it will give 5010 as a result
+            div.style.left = newVal;
+        }
+
+        function joke() { // It will move the button when we hover over it
+            if (document.getElementById("coche").checked) {
+                var div = document.getElementById("div2");
+                var val1 = div.style.left;
+                var val2 = div.style.top;
+                if (val1 == '') val1 = "0px";
+                if (val2 == '') val2 = "0px";
+
+                var alea = Math.floor((Math.random() * 50) + 20);
+                var newVal1 = (parseInt(val1.split('px')[0]) + alea) + "px";
+                var newVal2 = (parseInt(val2.split('px')[0]) + alea) + "px";
+                div.style.left = newVal1;
+                div.style.top = newVal2;
+            }
+        }
+    </script>
+</body>
+</html>

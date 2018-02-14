@@ -1,0 +1,23 @@
+body {
+    font-family: 'Times New Roman';
+    color: blue;
+}
+
+h1 {
+    font-family: 'Copperplate Gothic';
+    color: red;
+    background-color:orange;
+}
+label.labelVert{
+    color:green;
+}
+p.labelVert {
+    color: darkgreen;
+}
+#pAdresse{
+    background-color:yellow;
+}
+input[type=email] {
+    background-color: purple;
+    color:white;
+}

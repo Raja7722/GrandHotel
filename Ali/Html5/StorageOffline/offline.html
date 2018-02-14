@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <img id="rouge" src="images/rouge.png" style="visibility:visible" />
+    <img id="vert" src="images/vert.png" style="visibility:collapse" />
+    <script>
+        if (navigator.onLine)
+            // navigator.online returns true if we are connected to the internet. By activating and desactivating the internet
+            // it changes between true and false.
+            onLineStatus();
+        else
+            offLineStatus();
+        function onLineStatus() {
+            document.getElementById("rouge").style.visibility = "collapse";
+            document.getElementById("vert").style.visibility = "visible";
+        }
+        function offLineStatus() {
+            document.getElementById("rouge").style.visibility = "visible";
+            document.getElementById("vert").style.visibility = "collapse";
+        }
+        window.addEventListener("online", onLineStatus, false); // It sees automatically when the status changes
+        window.addEventListener("offline", offLineStatus, false);
+    </script>
+</body>
+</html>

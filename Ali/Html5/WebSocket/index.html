@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <button onclick="CloseWebSocket()">Fin</button>
+    <script>
+        if (window.WebSocket) alert('WebSocket ok'); else alert('Fonctionnalité WebSocket non impémenté sur ce navigateur!');
+
+        var socket = new WebSocket("ws://localhost:57001/live/socket.ashx");
+        socket.onopen = function () {
+            alert("Communication établie !");
+        };
+        socket.onerror = function (event) {
+            alert("Erreur de communication : " + event.data);
+        };
+        socket.onclose = function (event) {
+            if (event.wasClean)
+                alert("Communication terminée");
+            else
+                alert("Communication perturbée terminée" + event.code);
+        };
+        socket.onmmessage = function (event) {
+            if (event.type == "Text")
+                handleTextMessage(event.data);
+        };
+        function handleTextMessage(text) {
+            alert(text);
+        }
+
+        // Go
+        var message = "Hello ....";
+        socket.send(message);
+
+        function CloseWebSocket() {
+            socket.close(1000, "Fin de la communication");
+        }
+    </script>
+</body>
+</html>

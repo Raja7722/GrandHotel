@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Dynamic HTML</h1>
+    <table id="t1" border="1" cellpadding="3" cellspacing="0">
+        <tr style="background-color:silver"><td>Nom</td><td>Age</td></tr>
+        <!--<tr><td>André</td><td>20</td></tr>
+        <tr><td>Joe</td><td>40</td></tr>-->
+    </table>
+    <p id="par1">Nom</p>
+    <script>
+        var p = [
+            { "Nom": "André", "Age": 20 },
+            { "Nom": "Jo", "Age": 40 }
+        ]; // Table with 2 elements
+        var text = "";
+        var t1 = document.getElementById("t1");
+        for (i = 0; i < p.length; i++) {
+            var tr = t1.insertRow(1);
+            var td1 = tr.insertCell(0);
+            td1.addEventListener("mouseover", function () { // It will change the value of "Nom" 
+                //depending on the name I hover over
+                var par = document.getElementById("par1");
+                par.innerHTML = this.innerHTML; // I cannot say td1.innerHTML because this function will 
+                // execute outside of the loop where td1 does not exist.Insted "this" will use the current 
+                // object in which I am when the function is executed.
+            }); // There are other ways to do this but addEventListener works with every browser
+            td2 = tr.insertCell(1);
+            td2.style.textAlign = "center";
+            td1.innerHTML = p[i].Nom;
+            td2.innerHTML = p[i].Age;
+        }
+    </script>
+</body>
+</html>

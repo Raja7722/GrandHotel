@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <style>
+        div {
+            margin: 10px;
+        }
+
+        input:invalid {
+            background-color: lightpink;
+            border: solid 2px black;
+        }
+
+        input:valid {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <p id="message" style="color:red"></p>
+    <form action="page.aspx" onsubmit=" return VeriForm();">
+        <!--Before submitting it will check for the value of Veriform.
+        If it is false it will not submit.-->
+        <fieldset>
+            <legend>Renseignez le formulaire</legend>
+
+            <!--<div>
+                <label for="nom">Nom</label>
+                <input id="nom" type="text" placeholder="votre nom" required="required" autofocus="autofocus" />
+            </div>
+
+            <div>
+                <label for="prenom">Prenom</label>
+                <input id="prenom" type="text" placeholder="votre prenom" required="required" autofocus="autofocus" />
+            </div>
+
+            <div>
+                <label for="mail">Email :</label>
+                <input id="mail" type="email" placeholder="votre courriel" required="required" />
+            </div>
+
+            <div>
+                <label for="dateN">Date de naissance :</label>
+                <input id="dateN" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
+                       placeholder="votre date de naissance"
+                       required="required" />
+            </div>-->
+
+
+            <div id="div2">
+                <label for="Carte bancaire">Information de votre carte bancaire :</label>
+                <input id="NoCB" type="password"
+                       placeholder="Numéro de la carte bancaire"
+                       required="required" />
+                <button id="CBVerifier">Verifier CB</button>
+            </div>
+
+            <div id="div3">
+                <label for="Nombre de voyageurs">Nombre de voyageurs :</label>
+                <input id="NoVoyageurs" type="number" min="1" max="9"
+                       placeholder="Nombre de voyageurs"
+                       required="required" />
+                <button id="DispoVerifier">Verifier disponibilité</button>
+            </div>
+
+            <div id="divVoyageurs"></div>
+
+            <div id="Reservation"><button>Réserver</button></div>
+
+        </fieldset>
+
+        <input type="submit" value="Envoyer" />
+
+        <script>
+
+
+
+            $("#VerifierDate").click (
+                function () { // If the date given is later than the current date it will give "false"
+                    var dateStr = document.getElementById("dateN").value; // The date given be the user
+                    dateTab = dateStr.split('/');
+                    var dateSaisie = new Date(dateTab[2], dateTab[1] - 1, dateTab[0]); // For Javascript 0 is January,
+                    // 1 is February, 2 is March etc so we need to subtract 1
+                    var dateAuj = new Date(); //  This gives the current date
+                    dateAuj.setHours(0); // We need to give values for the time in order to be able to compare dates
+                    dateAuj.setMinutes(0);
+                    dateAuj.setSeconds(0);
+                    dateAuj.setMilliseconds(0);
+                    // Or we can say setHour(0,0,0,0)
+                    var message = document.getElementById("message");
+                    return dateSaisie < dateAuj;
+                    if (dateSaisie < dateAuj) {
+                        message.innerHTML = "";
+                        return true;
+                    }
+                    else {
+                        message.innerHTML = "Date de naissance incorrecte";
+                        return false;
+                    }
+                }
+            )
+
+
+            $("#CBVerifier").click(
+                function () {
+                    var param = $("#NoCB")[0].value;
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "http://localhost:2222/api/paiement",
+                            data: param,
+                            //timeout: 5000,
+                            datatype: 'application/text',
+                            contentType: 'application/json',
+                            success: function (data, status) {
+                                if (status == "success") {
+                                    $('#div2').html(data.Check ? "<ul><li>CB Validé" : "CB non validé</li></ul>");
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                $('#div2').html("error");
+                            }
+                        });
+                }
+            );
+
+            $("#DispoVerifier").click(
+                function () {
+                    var param = $("#NoVoyageurs")[0].value;
+                    $.ajax(
+                        {
+                            type: "GET",
+                            url: "http://localhost:2222/api/voyage/2",
+                            datatype: 'application/text',
+                            contentType: 'application/json',
+                            success: function (data, status) {
+                                if (status == "success") {
+                                    if (data.NbPlacesDispo >= $("#NoVoyageurs")[0].value) {
+                                        var temp = $("#NoVoyageurs")[0].value;
+                                        $('#div3').html("<ul><li>Disponibilité vérifiée</li></ul>");
+                                        for (i = 0; i < temp; i++) {
+                                            $('#divVoyageurs').append('\
+                                                  <text>Voyageur </text>' + (i + 1) + ' \
+                                                  <div> \
+                                                     <label for="nom" > Nom</label> \
+                                                     <input id="nom"'+ i +' type="text" placeholder="votre nom" required="required" autofocus="autofocus"/> \
+                                                  </div > \
+                                                 <div> \
+                                                     <label for="prenom">Prenom</label> \
+                                                     <input id="prenom"'+ i +' type="text" placeholder="votre prenom" required="required" autofocus="autofocus"/> \
+                                                 </div> \
+                                                 <div> \
+                                                     <label for="mail">Email :</label> \
+                                                     <input id="mail"'+ i +' type="email" placeholder="votre courriel" required="required"/> \
+                                                 </div> \
+                                                 <div> \
+                                                     <label for="dateN">Date de naissance :</label> \
+                                                     <input id="dateN" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" \
+                                                         placeholder="votre date de naissance" \
+                                                         required="required"/> \
+                                                <button id="VerifierDate">Verifier date</button> \
+                                                 </div> \
+                                                 ');
+                                        };
+                                    }
+                                    else {
+                                        $('#div3').html("<ul><li>" + "Malheureusement, il reste seulement " + data.NbPlacesDispo + " place(s) pour " + data.Nom + "</li></ul>");
+                                    }
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                $('#div3').html("error");
+                            }
+                        });
+                }
+            );
+
+
+            $("#Reservation").click(
+                function () {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "http://localhost:2222/api/voyage/",
+                            data: {
+                                'Etat': 0,
+                                'IdVoyage': 1,
+                                'InfosPaiements':
+                                {
+                                    'Check': true,
+                                    'Montant': 1500,
+                                    'noCB': "123456"
+                                },
+                                Personnes:
+                                [
+                                    {
+                                        'Id': 1,
+                                        'DateNaissance': '10/10/1910',
+                                        'EstClient': true,
+                                        'Nom': 'Makri',
+                                        'Prenom': 'Ali'
+                                    },
+                                    {
+                                        'Id': 2,
+                                        'DateNaissance': '11/11/1911',
+                                        'EstClient': false,
+                                        'Nom': 'Omari',
+                                        'Prenom': 'Youssef'
+                                    }
+                                ]
+                            },
+                            datatype: 'application/json',
+                            contentType: 'application/json',
+                            success: function (data, status) {
+                                if (status == "success") {
+                                    $('#div4').html(data.Etat == 0 ? "<ul><li>Réservation effectuée</li></ul>" : "<ul><li>Erreur sur réservation</li></ul>");
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                $('#div4').html("error");
+                            }
+                        });
+                }
+            );
+
+            function VeriForm() {
+                if (!VerifDateDeNaissance()) {
+                    message.innerHTML = "Date de naissance incorrecte";
+                    return false;
+                }
+                else {
+                    message.innerHTML = "";
+                    return true;
+                }
+            }
+
+
+        </script>
+    </form>
+</body>
+</html>

@@ -1,0 +1,315 @@
+﻿<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Inscription</title>
+</head>
+<body>
+
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <style>
+        div {
+            margin: 10px;
+        }
+
+        input:invalid {
+            background-color: lightpink;
+            border: solid 2px black;
+        }
+
+        input:valid {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <p id="message" style="color:red"></p>
+    <form action="">
+
+        <!--<form action="" onsubmit=" return VeriForm();">-->
+        <!--Before submitting it will check for the value of Veriform.
+        If it is false it will not submit.-->
+        <fieldset>
+            <legend>Renseignez le formulaire</legend>
+
+            <!--<div>
+                <text>Client</text> <br />
+                <label for="nom">Nom</label>
+                <input id="nom" type="text" placeholder="votre nom" required="required" autofocus="autofocus" />
+            </div>
+
+            <div>
+                <label for="prenom">Prenom</label>
+                <input id="prenom" type="text" placeholder="votre prenom" required="required" autofocus="autofocus" />
+            </div>
+
+            <div>
+                <label for="mail">Email :</label>
+                <input id="mail" type="email" placeholder="votre courriel" required="required" />
+            </div>-->
+
+            <div>
+                <label for="dateN">Date de naissance :</label>
+                <input id="dateN" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
+                       placeholder="votre date de naissance"
+                       required="required" />
+            </div>
+
+            <div id="div2">
+                <label for="Carte bancaire">Information de votre carte bancaire :</label>
+                <input id="NoCB" type="password" min="16" max="16"
+                       placeholder="Numéro de la carte bancaire"
+                       required="required" />
+                <button id="CBVerifier">Verifier CB</button>
+            </div>
+
+            <div id="div3">
+                <label for="Nombre de voyageurs">Nombre de voyageurs :</label>
+                <input id="NoVoyageurs" type="number" min="1" max="9"
+                       placeholder="Nombre de voyageurs"
+                       required="required" />
+                <button id="DispoVerifier">Verifier disponibilité</button>
+            </div>
+
+            <div id="divVoyageurs"></div>
+
+            <!--<div id="LocalStorage"><button>Local Storage</button><p id="messageStorage" style="color:green"></div>-->
+
+            <div id="SoumettreVoyageurs"><button>Soumettre</button><p id="messageSubmit" style="color:green"><p id="verifieDate" style="color:red"></p></div>
+
+            <div id="divReservation"><button id="Reservation">Réserver</button><p id="messageReservation" style="color:red"></div>
+
+
+        </fieldset>
+
+        <!--<input type="submit" value="Envoyer" />-->
+
+    </form>
+
+    <script>
+
+        //function VeriForm() {
+        //    if (!VerifDateDeNaissance()) {
+        //        message.innerHTML = "Date de naissance incorrecte";
+        //        return false;
+        //    }
+        //    else {
+        //        message.innerHTML = "";
+        //        return true;
+        //    }
+        //}
+
+        function VerifDateDeNaissance(dateNaissancce) { // If the date given is later than the current date it will give "false"
+            var dateStr = dateNaissancce; // The date given be the user
+            dateTab = dateStr.split('/');
+            var dateSaisie = new Date(dateTab[2], dateTab[1] - 1, dateTab[0]); // For Javascript 0 is January,
+            // 1 is February, 2 is March etc so we need to subtract 1
+            var dateAuj = new Date(); //  This gives the current date
+            dateAuj.setHours(0); // We need to give values for the time in order to be able to compare dates
+            dateAuj.setMinutes(0);
+            dateAuj.setSeconds(0);
+            dateAuj.setMilliseconds(0);
+            // Or we can say setHour(0,0,0,0)
+            var message = document.getElementById("verifieDate").innerHTML;
+            if (dateSaisie < dateAuj) {
+                message = "Date de naissance incorrecte"
+            }
+            else {
+                message = ""
+            }
+        }
+
+        var url = window.location.href;
+        id = url.split('?')[1].split('=')[1];
+
+        Reservation = {
+            'Etat': 0,
+            'IdVoyage': id,
+            'InfosPaiements':
+            {
+                'Check': '',
+                'Montant': 1500,
+                'noCB': ''
+            },
+            Personnes: []
+        };
+
+
+
+        $("#DispoVerifier").click(
+            function () {
+
+                param = $("#NoVoyageurs")[0].value;
+                $.ajax(
+                    {
+                        type: "GET",
+                        url: "http://localhost:2222/api/voyage/" + id,
+                        datatype: 'application/text',
+                        contentType: 'application/json',
+                        success: function (data, status) {
+                            if (status == "success") {
+                                if (data.NbPlacesDispo >= $("#NoVoyageurs")[0].value) {
+                                    $('#div3').html("<ul><li>Disponibilité vérifiée</li></ul>");
+                                    for (i = 0; i < param; i++) {
+                                        var content =
+                                            '\
+                                                        <text>Voyageur </text>' + (i + 1) + ' \
+                                                        <div> \
+                                                           <label for="nom" > Nom</label> \
+                                                           <input id="nom'+ i + '" type="text" placeholder="votre nom" required="required" autofocus="autofocus"/> \
+                                                        </div > \
+                                                       <div> \
+                                                           <label for="prenom">Prenom</label> \
+                                                           <input id="prenom'+ i + '" type="text" placeholder="votre prenom" required="required" autofocus="autofocus"/> \
+                                                       </div> \
+                                                       <div> \
+                                                           <label for="mail">Email :</label> \
+                                                           <input id="mail'+ i + '" type="email" placeholder="votre courriel" required="required"/> \
+                                                       </div> \
+                                                       <div> \
+                                                           <label for="dateN">Date de naissance :</label> \
+                                                           <input id="dateN'+ i + '" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" \
+                                                               placeholder="votre date de naissance" \
+                                                               required="required"/> \
+                                                       </div> \
+                                                                 ';
+                                        $('#divVoyageurs').append(content);
+                                    };
+
+                                }
+                                else {
+                                    $('#div3').html("<ul><li>" + "Malheureusement, il reste seulement " + data.NbPlacesDispo + " place(s) pour " + data.Nom + "</li></ul>");
+                                }
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            $('#div3').html("error");
+                        }
+                    });
+                return false;
+            }
+        );
+
+        $("#SoumettreVoyageurs").click(
+            function () {
+                for (j = 0; j < param; j++) {
+                    var Personne =
+                        {
+                            'Id': 0,
+                            'DateNaissance': document.getElementById("dateN" + j).value,
+                            'EstClient': j == 0,
+                            'Nom': document.getElementById("nom" + j).value,
+                            'Prenom': document.getElementById("prenom" + j).value
+                        };
+                    Reservation.Personnes.push(Personne);
+                    //VerifDateDeNaissance(Personne.DateNaissance);
+                }
+                if (navigator.onLine) {
+                    document.getElementById("messageSubmit").innerHTML = "Soumis avec succès";
+                }
+                else {
+                    localStorage.setItem("ReservationStocke", Reservation);
+                    document.getElementById("messageSubmit").innerHTML = "Le système est hors ligne Vos données ont été stockées et seront soumises une fois que le système sera de nouveau en ligne.";
+                }
+                return false;
+            });
+
+
+        $("#CBVerifier").click(
+            function () {
+                NumeroCB = $("#NoCB")[0].value;
+                Reservation.InfosPaiements.noCB = NumeroCB;
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://localhost:2222/api/paiement",
+                        data: NumeroCB,
+                        datatype: 'application/text',
+                        contentType: 'application/json',
+                        success: function (data, status) {
+                            if (status == "success") {
+                                $('#div2').html(data.Check ? "<ul><li>CB Validé" : "CB non validé</li></ul>");
+                                Reservation.InfosPaiements.Check = data.Check;
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            $('#div2').html("error");
+                        }
+                    });
+                return false;
+            }
+        );
+
+
+        $("#Reservation").click(
+            function () {
+                if (document.getElementById("messageSubmit").innerHTML != "Soumis avec succès") {
+                    document.getElementById("messageReservation").innerHTML = "La liste des voyageurs doit être remplie et soumise avant la fin de la réservation"
+                }
+                else {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "http://localhost:2222/api/voyage/",
+                            data: JSON.stringify(Reservation),
+                            datatype: 'application/json',
+                            contentType: 'application/json',
+                            success: function (data, status) {
+                                if (status == "success") {
+
+                                    $('#divReservation').html(data != null && data.Etat == 0 ? "<ul><li>Réservation effectuée</li></ul>" : "<ul><li>Erreur sur réservation</li></ul>");
+                                    Reservation.Etat = true;
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                $('#divReservation').html("Error");
+                            }
+                        });
+                }
+
+                return false;
+            }
+        );
+
+        window.addEventListener("offline", TestConnection, false);
+
+        function TestConnection() {
+            window.addEventListener("online", ReservationOffline, false);
+        }
+
+        function ReservationOffline() {
+            if (localStorage.getItem("ReservationStocke", Reservation) != null) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://localhost:2222/api/voyage/",
+                        data: JSON.stringify(localStorage.getItem("ReservationStocke", Reservation)),
+                        datatype: 'application/json',
+                        contentType: 'application/json',
+                        success: function (data, status) {
+                            if (status == "success") {
+
+                                $('#divReservation').html(data != null && data.Etat == 0 ? "<ul><li>Réservation effectuée</li></ul>" : "<ul><li>Erreur sur réservation</li></ul>");
+                                Reservation.Etat = true;
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            $('#divReservation').html("Error");
+                        }
+                    });
+            }
+            return false;
+        }
+
+    </script>
+
+</body>
+</html>

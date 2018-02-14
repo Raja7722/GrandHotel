@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" id="saisie" value="auto" />
+    <button onclick="goGet()">Get</button>
+    <button onclick="goPost()">Post</button>
+    <p id="message"></p>
+
+    <script>
+
+        var requete = new XMLHttpRequest();
+        function goGet() {
+            var param = document.getElementById("saisie").value;
+            requete.open("GET", "http://localhost:62604/page.aspx?categorie=" + param);
+            requete.send();
+
+            requete.onreadystatechange = function () {
+                if (requete.status == 200 && requete.readyState == 4) {
+                    document.getElementById("message").innerHTML = requete.responseText;
+                }
+            }
+        }
+
+        function goPost() { // "Post" sends the information to the server via the tête and no the url.
+            // That is better in two ways, firstly id does not have a limitation in space (url can be up to 1000 characters)
+            //and secondly it is hidden (with url the information we sent is shown)
+            var param = document.getElementById("saisie").value;
+            requete.open("POST", "http://localhost:62604/page.aspx");
+            var data = new FormData();
+            data.append('cat', param);
+            requete.send(data);
+
+            requete.onreadystatechange = function () {
+                if (requete.status == 200 && requete.readyState == 4) {
+                    document.getElementById("message").innerHTML = requete.responseText;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+

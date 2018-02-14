@@ -1,0 +1,9 @@
+<div class="App">
+  <div class="todo-wrapper">
+    <app-header></app-header> <!--This component that is in my app-root component need to be defined separately-->
+    <app-todo-input></app-todo-input> <!--This component that is in my app-root component need to be defined separately-->
+    <div *ngFor="let todo of todoService.getTodos()">
+      <app-todo-item [todo]="todo"></app-todo-item>
+    </div>
+  </div>
+</div>

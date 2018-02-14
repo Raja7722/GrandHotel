@@ -1,0 +1,97 @@
+﻿body {
+    background: linear-gradient(to right, cyan, yellow)
+    /*background:radial-gradient(cyan, yellow)*/
+}
+
+.petit {
+    width: 100px;
+    height: 20px;
+}
+
+.moyen {
+    width: 40px;
+    height: 40px;
+}
+
+.grand {
+    width: 60px;
+    height: 60px;
+}
+
+.tresgrand {
+    width: 200px;
+    height: 200px;
+}
+
+
+.cadrerouge {
+    border: 5px solid red;
+}
+
+.avecimage {
+    background-image: url('../images/rose.png'),url('../images/rose.png'), url('../images/download.png');
+    background-repeat: repeat-x, repeat-y, repeat-y;
+}
+
+.bleu {
+    background-color: blue;
+}
+
+.blanc {
+    background-color: white;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.fixe {
+    position: fixed;
+    top: 100px;
+    left: 50px;
+}
+
+.relatif {
+    position: relative; /*It takes the current position (0,0) and adss the two given values*/
+    top: 20px;
+    left: 100px;
+}
+
+.absolu1 {
+    position: absolute; /*It means that it takes the origin of the <div> in which this <div> is and 
+        then adds the coordinates we give*/
+    top: 15px;
+    left: 85px;
+}
+
+.absolu2 {
+    position: absolute; /*It means that it takes the origin of the <div> in which this <div> is and 
+        then adds the coordinates we give*/
+    top: 0px;
+    left: 0px;
+}
+
+.encercle {
+    /*border-radius: 20%;*/ /*It softens the edges until it's a complete circle at 50%*/
+    border-radius: 50%;
+}
+
+.transparent {
+    opacity:0.5;
+}
+
+.p1::first-letter {
+    font-size: 48px;
+}
+
+p::selection{ /*it affects the part of the text that I select*/
+    background-color:yellow;
+    color:red;
+    border:2px solid blue;
+}
+
+p::before {
+    content: "Avant paragraphe";
+    color: blue;
+}
+

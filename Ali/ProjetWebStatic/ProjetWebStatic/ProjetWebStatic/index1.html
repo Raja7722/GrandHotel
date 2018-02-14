@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Liste des Voyages</title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <!--<link href="Style/Mobile.css" rel="stylesheet" />-->
+    <link href="Style/index1.css" rel="stylesheet" />
+</head>
+<body>
+    <img src="Images/voyage.jpg" /><br />
+    <div class="header">BoVoyage</div>
+    <div class="menu">
+        <div id="divContinent">
+            Continent
+            <select id="continent">
+                <option value="0">Tout</option>
+                <option value="1">Afrique</option>
+                <option value="2">Asie</option>
+                <option value="3">Europe</option>
+            </select>
+        </div>
+        <div id="divPays">
+            Pays
+            <select id="pays">
+                <option value="0">Tout</option>
+                <option value="11">Mali</option>
+                <option value="21">Singapour</option>
+            </select>
+        </div>
+        <div id="divRegion">
+            Région
+            <select id="region">
+                <option value="0">Tout</option>
+                <option value="111">Bamako</option>
+                <option value="21">Singapour</option>
+            </select>
+        </div>
+    </div>
+    <button id="buttonValider">Valider</button>
+
+    <p id="message"></p>
+<ul id="listeVoyages"></ul>
+
+    <!--<a href="/index2.html">Page2</a>
+    <a href="/index3.html">Page3</a>-->
+    <!--<form method="get" action="page2.html">
+        <a href="index2.html?id=1" id="lien1">Choisir ce voyage (1)</a><br />
+        <a href="index2.html?id=2" id="lien2">Choisir ce voyage (2)</a>
+    </form>-->
+
+    <script>
+        $(document).ready(function () {
+            $("#buttonValider").click(
+                function () {
+                    var param1 = $("#continent").val();
+                    var param2 = $("#pays").val();
+                    var param3 = $("#region").val();
+                    //var param1 =0;
+                    //var param2 = 0;
+                    //var param3 = 0;
+                    $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:2222/Api/voyage/' + param1 + '/' + param2 + '/' + param3,
+                        //data: { cat: param1, souscat: param2, souscat: param3 },
+                        contentType: 'application/json',
+                        success: function (data, status) {
+                            if (status == "success")
+                                for (i = 0; i < data.length; i++) {
+
+                                    //$('#listeVoyages').append('<li> ' + data[i].Id + ' ' + data[i].Nom + ' ' + '<ul><li>' + data[i].Image + '</li></ul>' + ' ' + data[i].NbPlacesDispo + '</li>');
+                                    $('#listeVoyages').append('<li> ' + data[i].Nom + '     ' + '<a href="index2.html?id=' + (i + 1) + '" id="lien' + (i + 1) + '">Choisir ce voyage</a>'+ '</li ><br />');
+                                }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(status);
+                        }
+                    });
+                });
+        });
+
+                                                    //var param1 = $("#continent")[0].Id;
+                                                    //var param2 = $("#pays")[0].Id;
+                                                    //var param3 = $("#region")[0].Id;
+                                                    ////var param1 = 0;
+                                                    ////var param2 = 0;
+                                                    ////var param3 = 0;
+                                                    //$.ajax({
+                                                    //    type: 'GET',
+                                                    //    url: 'http://localhost:2222/Api/voyage',
+                                                    //    data: { cat: param1, souscat: param2, souscat: param3},
+                                                    //    contentType: 'application/json',
+                                                    //    success: function (data, status) {
+                                                    //        if (status == "success")
+                                                    //            for (i = 0; i < data.length; i++) {
+                                                    //                $('#listeVoyages').append('<li>' + ' ' + data[i].Id + ' ' + data[i].Nom + ' ' + '<ul><li>' + data[i].Image + '</li></ul>' + ' ' + data[i].NbPlacesDispo + '</li>');
+
+                                                    //            }
+                                                    //    },
+                                                    //    error: function (xhr, status, error) {
+                                                    //        alert(status);
+                                                    //    }
+                                                    //});
+
+                                                                            //reservation
+                                                                            //$.ajax(
+                                                                            //    {
+                                                                            //        type: "POST",
+                                                                            //        url: "http://localhost:2222/api/voyage/",
+                                                                            //        data: {
+                                                                            //            'Etat': 0,
+                                                                            //            'IdVoyage': 1,
+                                                                            //            'InfosPaiements':
+                                                                            //            {
+                                                                            //                'Check': true,
+                                                                            //                'Montant': 1500,
+                                                                            //                'noCB': "123456"
+                                                                            //            },
+                                                                            //            Personnes:
+                                                                            //            [
+                                                                            //                {
+                                                                            //                    'Id': 1,
+                                                                            //                    'DateNaissance': '10/10/1910',
+                                                                            //                    'EstClient': true,
+                                                                            //                    'Nom': 'Makri',
+                                                                            //                    'Prenom': 'Ali'
+                                                                            //                },
+                                                                            //                {
+                                                                            //                    'Id': 2,
+                                                                            //                    'DateNaissance': '11/11/1911',
+                                                                            //                    'EstClient': false,
+                                                                            //                    'Nom': 'Omari',
+                                                                            //                    'Prenom': 'Youssef'
+                                                                            //                }
+                                                                            //            ]
+                                                                            //        },
+                                                                            //        //timeout: 5000,
+                                                                            //        datatype: 'application/json',
+                                                                            //        contentType: 'application/json',
+                                                                            //        success: function (data, status) {
+                                                                            //            if (status == "success") {
+                                                                            //                $('#div4').html(data.Etat == 0 ? "<ul><li>Réservation effectuée</li></ul>" : "<ul><li>Erreur sur réservation</li></ul>");
+                                                                            //            }
+                                                                            //        },
+                                                                            //        error: function (xhr, status, error) {
+                                                                            //            $('#div4').html("error");
+                                                                            //        }
+                                                                            //    });
+
+
+    </script>
+
+</body>
+</html>

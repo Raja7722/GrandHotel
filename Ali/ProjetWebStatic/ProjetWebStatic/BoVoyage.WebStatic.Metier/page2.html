@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+    <script>
+        var url = window.location.href;
+        var id =url.split('?')[1].split('=')[1];
+        $('#div1').html("Vous avez choisi le voyage n° " + id);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular</title>
+    <meta charset="UTF-8">
+    <script src="./node_modules/zone.js/dist/zone.js"></script>
+    <script src="./node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="./node_modules/systemjs/dist/system.js"></script>
+    <script>
+        System.config({
+            map: {
+                '@angular/core': 'node_modules/@angular/core/bundles/core.umd.js',
+                '@angular/common': 'node_modules/@angular/common/bundles/common.umd.js',
+                '@angular/compiler': 'node_modules/@angular/compiler/bundles/compiler.umd.js',
+                '@angular/platform-browser': 'node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
+                '@angular/platform-browser-dynamic': 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+
+                'rxjs': 'node_modules/rxjs'
+            },
+            packages: {
+                '.': {}
+            }
+        });
+        System.import('main');
+
+    </script>
+</head>
+<body>
+    <app-todoList>Launching Base Event</app-todoList>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="div1"
+         style="width:50px;height:50px;background-color:green"
+         draggable="true"
+         ondragstart="dragDiv(event)"></div>
+    <div id="div2"
+         style="width:50px;height:50px;background-color:blue"
+         draggable="true"
+         ondragstart="dragDiv(event)"></div>
+    <div id="div3"
+         style="width:50px;height:50px;background-color:yellow"
+         ondrop="dropDiv(event)"
+         ondragover="overDiv(event)"></div>
+    <div draggable="true"
+         ondragstart="handleDrag(event)">Contenu à déplacer</div>
+    <input type="text" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" />
+    <script>
+        function handleDrag(event) {
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text", event.target.innerHTML);
+        }
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.effectAllowed = "move";
+        }
+        function handleDrop(event) {
+            event.preventDefault();
+            event.target.value = event.dataTransfer.getData("text");
+        }
+        function dragDiv(event) {
+            event.dataTransfer.effectAllowed = "copy";
+            event.dataTransfer.setData("text", event.target.id); // In the parenthesis I give the type of file and the context. This takes the specified context from th div we drag and copies it in a data file.
+        }
+        function dropDiv(event) {
+            event.preventDefault(); // I'm not sure what this does
+            var nomDiv = event.dataTransfer.getData("text"); // Here I tell him what I want to get from the aforementioned data file.
+            var divDrop = event.target; // Here I tell him to which div I am going to drop
+            divDrop.style.backgroundColor = document.getElementById(nomDiv).style.backgroundColor;
+        }
+        function overDiv(event) {
+            event.preventDefault();
+            event.dataTransfer.effectAllowed = "copy";
+        }
+    </script>
+</body>
+</html>

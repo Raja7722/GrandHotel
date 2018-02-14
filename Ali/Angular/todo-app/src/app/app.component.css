@@ -1,0 +1,9 @@
+.App{
+  text-align:center;
+}
+.todo-wrapper{
+  margin:20px auto 20px auto;
+  width:500px;
+  min-height:600px;
+  border:5px solid rgba(73,204,249,1.0); /*I define here the color for my app-root component in terms of rgb (1 to 250 for each color) and transparency a(1.0 means no transparency)*/
+}

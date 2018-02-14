@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="text" id="saisie1" value="auto" />
+    <input type="text" id="saisie2" value="auto" />
+    <button id="btnGet">Get avec Ajax</button>
+    <button id="btnPost">Post avec Ajax</button>
+    <p id="message"></p>
+
+    <script>
+        $("#btnGet").click(
+            function () {
+                var param1 = $("#saisie1")[0].value;
+                var param2 = $("#saisie2")[0].value; // We add a second parameter here
+                $.ajax(
+                    {
+                        type: "GET",
+                        url: "http://localhost:62604/page.aspx?categorie=" + param1 + "&souscat=" + param2,
+                        // If we give as an input "animal" and "insecte" the url will be  http://localhost:62604/page.aspx?categorie=animal&souscat=insecte
+                        success: function (data, status) {
+                            if (status == "success")
+                                document.getElementById("message").innerHTML = data;
+                        },
+                        error: function (xhr, status, error) {
+                            alert(status);
+                        }
+                    }
+                );
+            });
+        $("#btnPost").click(
+            function () {
+                var param1 = $("#saisie1")[0].value;
+                var param2 = $("#saisie2")[0].value;
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://localhost:62604/page.aspx",
+                        data: { cat: param1, souscat: param2 },
+                        timeout: 5000,
+                        datatype: 'application/json',
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (data, status) {
+                            if (status == "success")
+                                document.getElementById("message").innerHTML = data;
+                        },
+                        error: function (xhr, status, error) {
+                            alert(status);
+                        }
+                    }
+                );
+            });
+    </script>
+</body>
+</html>

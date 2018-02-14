@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            margin: 5px;
+        }
+
+        input:invalid {
+            background-color: pink;
+            border: dotted 2px black;
+        }
+
+        input:valid {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <p id="message" style="color:red"></p>
+    <form action="page.aspx" onsubmit=" return VeriForm();">
+        <!--Before submitting it will check for the value of Veriform.
+        If it is false it will not submit.-->
+        <fieldset>
+            <legend>Renseignez le formulaire</legend>
+            <div>
+                <label for="nom">Nom :</label>
+                <input id="nom" type="text" placeholder="votre nom" required="required" autofocus="autofocus" />
+            </div>
+            <div>
+                <label for="mail">Email :</label>
+                <input id="mail" type="email" placeholder="votre courriel" required="required" />
+            </div>
+            <div>
+                <label for="dateN">Date de naissance :</label>
+                <input id="dateN" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
+                       placeholder="votre date de naissance"
+                       onblur="CalculAge();"
+                       required="required" />
+            </div>
+            <div>
+                <label for="age">Age :</label>
+                <input id="age" type="number" min="1" max="200"
+                       placeholder="votre age"
+                       disabled="disabled"
+                       required="required" />
+            </div>
+        </fieldset>
+        <input type="submit" value="Envoyer" />
+        <script>
+            function VeriForm() {
+                if (!VerifDateDeNaissance()) {
+                    message.innerHTML = "Date de naissance incorrecte";
+                    return false;
+                }
+                else {
+                    message.innerHTML = "";
+                    return true;
+                }
+            }
+
+            function VerifDateDeNaissance() { // If the date given is later than the current date it will give "false"
+                var dateStr = document.getElementById("dateN").value; // The date given be the user
+                dateTab = dateStr.split('/');
+                var dateSaisie = new Date(dateTab[2], dateTab[1] - 1, dateTab[0]); // For Javascript 0 is January,
+                // 1 is February, 2 is March etc so we need to subtract 1
+                var dateAuj = new Date(); //  This gives the current date
+                dateAuj.setHours(0); // We need to give values for the time in order to be able to compare dates
+                dateAuj.setMinutes(0);
+                dateAuj.setSeconds(0);
+                dateAuj.setMilliseconds(0);
+                // Or we can say setHour(0,0,0,0)
+                var message = document.getElementById("message");
+                return dateSaisie < dateAuj;
+            }
+
+            function CalculAge() {
+                var dateStr = document.getElementById("dateN").value;
+                dateTab = dateStr.split('/');
+                var dateAuj = new Date();
+                var anneeAuj = dateAuj.getFullYear();
+                document.getElementById('age').value = anneeAuj - dateTab[2];
+            }
+        </script>
+    </form>
+</body>
+</html>

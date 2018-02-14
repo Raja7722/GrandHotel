@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-3.2.1.min.js"></script>
+    <title></title>
+    <style>
+        .bleu{
+            color:blue;
+        }
+        .vert {
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="bleu">Dynamic Html</h1>
+    <table id="t1" border="1" cellpadding="3" cellspacing="0">
+        <tr style="background-color:silver"><td>Nom</td><td>Age</td></tr>
+    </table>
+    <p id="par1">...</p>
+
+    <button>Change couleur</button>
+
+    <script>
+        var p = [
+            { "Nom": "André", "Age": 20 },
+            { "Nom": "Jo", "Age": 40 },
+            { "Nom": "Steph", "Age": 30 }
+        ];
+
+        for (i = 0; i < p.length; i++) {
+            $("#t1").append(
+                "<tr><td>" + p[i].Nom +
+                "</td><td>" +
+                p[i].Age + "</td></tr>");
+        }
+        $("td:nth-child(1)").mouseover(function () { // = Get me the 1st child of the parent of td
+            $("#par1").html("nom : " + this.innerHTML);
+        });
+        $("td:nth-child(2)").mouseover(function () {
+            $("#par1").html(this.innerHTML + " ans");
+        });
+
+        setInterval(function () { $("#par1").html("") }, 5000);
+
+        $("button").click(function () {  
+                $("h1").toggleClass("vert"); // It toggles between the current class and the one given  
+        });
+
+        // This type of syntax where by using $("h1") I can use the object h1 directly is JQuery
+    </script>
+</body>
+</html>

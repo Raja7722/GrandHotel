@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="file" multiple="multiple" id="fichier" onchange="OnLoadFile();" /> <!--The type "file" is going to create a button by which we can search for a file. "multilpe" says that we can open multiple files.-->
+    <textarea id="ZoneText" rows="10" cols="40"></textarea>
+    <script>
+        function OnLoadFile() {
+            var balisefichier = document.getElementById("fichier");
+            if (balisefichier.files.length == 1 &&
+                balisefichier.files[0].type.match(/text.*/)) { // This /text.*/ is the equivalent of this "text.*" in c#.
+                // Regular expressions (view https://regex101.com)
+                // text.* means that in type there is somewhere in the word qthe letter b then .means that it is fiollowed by a character
+                // and * means many times (so many characters).So textbmsdq is ok but also edfjzebnkjtextzefnl is ok.
+                // Other example : /b.*ue/ It can be bienvenue, boutique, bouetera etc
+                var reader = new FileReader();
+                reader.onload = function (contenu) {
+                    var zoneText = document.getElementById("ZoneText");
+                    zoneText.value = contenu.target.result;
+                };
+                reader.onerror = function (result) {
+                    alert('lecture du fichier impossible');
+                }
+                reader.readAsText(balisefichier.files[0], "UTF-8");
+            }
+            else
+                alert("Choisissez un seul fichier texte");
+        }
+    </script>
+</body>
+</html>

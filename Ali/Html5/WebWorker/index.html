@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<!--Workers allow me to send a process to another thread so that while it runs in the other thread I can still use my interface in the current thread.
+<html>-->
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p>Compteur 1 : <div id="result1" style="font-size:24px"></div> </p>
+    <p>Compteur 2 : <div id="result2" style="font-size:24px"></div> </p>
+    <button onclick="go();" id="btnGo">Go</button>
+    <button onclick="stop(0);">Stop Worker 1</button>
+    <button onclick="stop(1);">Stop Worker 2</button>
+    <button onclick="EnPause();">Pause</button>
+    <input type="checkbox" /> <!--I add this to test that while the counters are running I can still use my interface (aka click/unclick the checkbox).-->
+
+    <script>
+        var w = []; // I define a table (initially empty) where I will put my workers
+        var output1 = document.getElementById("result1");
+        var output2 = document.getElementById("result2");
+
+        function go() {
+            if (typeof (Worker) === 'undefined') return;
+            w.push(new Worker('scripts/monWorker.js')); // push in javascript is the equivalent to Add in c#. Here I add the two workers in my table.
+            //When defining workers I have to give them as a paramater the script they will send to the other thread to run it.
+            w.push(new Worker('scripts/monWorker.js'));
+
+            w[0].postMessage({ // w[0] is an object of type Worker
+                'command': 'init',
+                'valeurs': { // valeurs is an object I define with two properties, pause and pas
+                    'duree': 250,
+                    'pas': 1
+                }
+            });
+
+            w[1].postMessage({
+                'command': 'init',
+                'valeurs': {
+                    'duree': 100,
+                    'pas': 1
+                }
+            });
+
+            w[0].onmessage = function (eventData) {
+                output1.innerHTML = eventData.data;
+            }
+
+            w[1].onmessage = function (eventData) {
+                output2.innerHTML = eventData.data;
+            }
+            document.getElementById('btnGo').disabled = true;
+        }
+
+        function stop(id) {
+            w[id].terminate(); // terminate will kill the worker which means that if I want to use it again I will have to re-instanciate it
+        }
+
+        function EnPause() {
+            w[0].postMessage({
+                'command': 'pause'
+            })
+            w[1].postMessage({
+                'command': 'pause'
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <button onclick="go()">Go</button> <p id="message"> </p>
+    <script>
+        var requete = new XMLHttpRequest();
+        var url = "http://localhost:62604/data.aspx"; // For the address right-click on project and go to "Web". 
+        // Then we add "data.aspx" which is the agne t on the server who will answer our request.
+        function go() {
+            requete.open("POST", url); // Like this it is not syncronized meaning that I will send the request and 
+            // continue the program without waiting for the answer.If I want to wait for the answer before proceeding 
+            // I will have to say request.open("POST", url, false)
+            requete.send();
+
+            requete.onreadystatechange = function () {
+                if (requete.status == 200 && requete.readyState == 4) { // 200 means that everything went fine meaning 
+                    // a reponse was received and readystate == 4 means the operation is complete
+                    document.getElementById("message").innerHTML = requete.responseText;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

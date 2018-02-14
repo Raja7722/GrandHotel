@@ -1,0 +1,35 @@
+﻿body {
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+}
+
+.cadre {
+    border: 5px solid black;
+}
+
+.pos1 {
+    position: fixed;
+    top: 100px;
+    left: 250px;
+}
+
+.pos2 {
+    position: fixed;
+    top: 300px;
+    left: 50px;
+}
+
+.pos3 {
+    position: fixed;
+    top: 300px;
+    left: 250px;
+}
+
+.pos4 {
+    position: fixed;
+    top: 100px;
+    left: 50px;
+}
